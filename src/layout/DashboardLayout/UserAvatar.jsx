@@ -43,13 +43,6 @@ const DropdownOption = styled(FlexBox)`
   }
 `;
 
-const profileOptions = [
-  // { label: "Profile Settings", link: "/profile?source=top-nav" },
-  { label: "My Stores", link: "/my-stores?source=top-nav" },
-  { label: "Add a store", link: "/onboarding-merchant?source=top-nav" },
-  { label: "Privacy", link: "/privacy-policy?source=top-nav" },
-];
-
 const ProfileDropdown = ({
   toggleDropdown = () => {},
   commonAnalyticsPayload,
@@ -83,20 +76,6 @@ const ProfileDropdown = ({
   return (
     <DropdownContainer ref={containerRef}>
       <Dropdown className="header-profile">
-        {profileOptions.map(({ label, link }) => (
-          <DropdownOption
-            key={label}
-            onClick={() => {
-              trackEvent("db_profile_dropdown_click", {
-                ...commonAnalyticsPayload,
-                selected_option: label,
-              });
-              router.push(link);
-            }}
-          >
-            <Body2>{label}</Body2>
-          </DropdownOption>
-        ))}
         <DropdownOption onClick={handleLogoutClick}>
           <Body2>Log Out</Body2>
           <FiLogOut />

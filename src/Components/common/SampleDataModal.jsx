@@ -51,11 +51,6 @@ const SampleDataModal = ({ closeModal }) => (
         height="100px"
         width="100px"
       />
-      <Body2 textAlign="center">
-        We can&apos;t provide shop analytics due to insufficient data. Please
-        ensure proper data collection for accurate future analytics. Thank you
-        for your understanding.- Team Pamprazzi.
-      </Body2>
     </SubHeading>
   </Modal>
 );

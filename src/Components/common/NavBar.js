@@ -94,8 +94,8 @@ const NavBar = ({ navContainerStyles }) => {
               isStatic
               height={36}
               draggable={false}
-              src="/assets/pamprazzi-logo-white.svg"
-              alt="pamprazzi Logo"
+              src=""
+              alt=""
             />
           </LogoContainer>
           {/* <NavLinks navState={isMenuOpen} closeMenu={closeMenu} /> */}

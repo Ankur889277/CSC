@@ -98,7 +98,7 @@ const UserDetails = ({
     <FlexBox column rowGap="3rem">
       <FlexBox justify="flex-end" margin="-39px 0" align="center">
         <UserButton>User</UserButton>
-        {showDeleteIcon && <MdDeleteOutline />}
+        {showDeleteIcon && <MdDeleteOutline  size={20}/>}
       </FlexBox>
       <FlexBox
         column

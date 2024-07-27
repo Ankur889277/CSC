@@ -129,22 +129,6 @@ const ChartComponent = () => (
   />
 );
 
-const CoinBal = () => (
-  <FlexBox column height="100%" justify="center">
-    <FlexBox align="center" columnGap="0.5rem">
-      <img src="/assets/coin.svg" alt="Coin" />
-      <H1 bold>1000</H1>
-      <Body2>in wallet</Body2>
-    </FlexBox>
-    <FlexBox column rowGap="1.5rem">
-      <Body1>
-        Care Coins get added to your account as you use Pamprazzi and avail our
-        services.
-      </Body1>
-      <Button disabled>Refer</Button>
-    </FlexBox>
-  </FlexBox>
-);
 
 const StaffMatrix = () => (
   <ChartWrapper>

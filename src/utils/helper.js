@@ -64,8 +64,6 @@ export const deleteImage = async (
   try {
     if (!imageUrl) return;
     const trimmedUrl = imageUrl.replace(
-      /^https:\/\/assets-pamprazzi\.b-cdn\.net\store\//,
-      ""
     );
     const parts = trimmedUrl.split("/");
     const fileName = parts.pop();

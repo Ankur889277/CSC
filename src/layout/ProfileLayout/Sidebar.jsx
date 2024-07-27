@@ -57,12 +57,6 @@ const Logo = styled.img`
   max-width: 7rem;
 `;
 
-const PamprazziLogo = styled(FlexBox)`
-  padding: 1.5rem 1.5rem 0;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 const BottomIcon = styled.div`
   width: 100%;
   display: flex;
@@ -98,16 +92,6 @@ export const Sidebar = ({ showSidebar, toggleSidebar }) => {
     <SidebarWrapper expanded={showSidebar}>
       <SidebarContainer>
         <FlexBox column rowGap="1.5rem">
-          <PamprazziLogo>
-            <Link href="/my-stores">
-              <Logo
-                src="/assets/pamprazzi-logo-white.svg"
-                alt="logo"
-                draggable="false"
-              />
-            </Link>
-            {!isDesktop && <FiX color={ACCENT_0} onClick={toggleSidebar} />}
-          </PamprazziLogo>
         </FlexBox>
         <BottomIcon>
           <FlexBox

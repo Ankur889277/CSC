@@ -6,11 +6,11 @@ import {
 } from "react-icons/sl";
 
 export const socialIconsData = [
-  { icon: SlSocialFacebook, link: "https://www.facebook.com/pamprazzi/" },
+  { icon: SlSocialFacebook, link: "" },
   {
     icon: SlSocialLinkedin,
-    link: "https://www.linkedin.com/company/pamprazzi/",
+    link: "",
   },
-  { icon: SlSocialInstagram, link: "https://www.instagram.com/pamprazzi/" },
-  { icon: SlSpeech, link: "mailto:support@pamprazzi.com" },
+  { icon: SlSocialInstagram, link: "" },
+  { icon: SlSpeech, link: "" },
 ];

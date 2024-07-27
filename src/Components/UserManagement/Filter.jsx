@@ -33,7 +33,7 @@ const Filter = () => {
       </FlexBox>
       {fields.map(field => (
         <FlexBox align="center" key={field}>
-          <CheckBox />
+          <CheckBox size={13} />
           <Body1>{field}</Body1>
         </FlexBox>
       ))}

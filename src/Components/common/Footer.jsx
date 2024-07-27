@@ -131,12 +131,6 @@ const getInTouchNavLinkData = [
     name: "Kolkata, West Bengal",
     onClick: () => console.log("Home clicked"),
   },
-  {
-    name: "support@pamprazzi.com",
-    onClick: () => {
-      location.href = "mailto:support@pamprazzi.com";
-    },
-  },
 ];
 
 const RotatingText = () => {
@@ -199,7 +193,7 @@ const Footer = () => {
         </FlexBox>
         <ContentContainer>
           <ContentBox isLarge align="center">
-            <img src="/assets/pamprazzi-logo-white.svg"></img>
+            <img src=""></img>
             <Body1 color={ACCENT_0}>Simplifying Self-Care</Body1>
           </ContentBox>
           <ContentBox>
@@ -241,7 +235,7 @@ const Footer = () => {
       </FooterContainer>
       <CopyRightBox>
         <H6 color={ACCENT_0}>
-          Copyright © 2024 Self Care Simplified-Pamprazzi. All rights reserved.
+
         </H6>
       </CopyRightBox>
     </>
