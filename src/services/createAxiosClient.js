@@ -19,7 +19,6 @@ export function createAxiosClient({
   options,
   getCurrentAccessToken,
   getCurrentRefreshToken,
-  refreshTokenUrl,
   logout,
   setRefreshTokens,
 }) {

@@ -33,7 +33,6 @@ export const client = createAxiosClient({
   },
   getCurrentAccessToken,
   getCurrentRefreshToken,
-  refreshTokenUrl: `${BASE_URL}${URL.refreshToken}`,
   logout: terminateSession,
   setRefreshTokens,
 });
