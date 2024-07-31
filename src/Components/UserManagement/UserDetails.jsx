@@ -22,6 +22,7 @@ const Wrapper = styled(FlexBox)`
 `;
 
 const Card = styled.div`
+position: relative;
   display: grid;
   grid-template-columns: repeat(3, auto);
   column-gap: 1rem;
@@ -124,19 +125,19 @@ const UserList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showDeleteIcon, setShowDeleteIcon] = useState(false);
   const [showCards, setShowCards] = useState(true);
-  const [filterVisible, setFilterVisible] = useState(false); // State for filter visibility
+  const [filterVisible, setFilterVisible] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const toggleDeleteIcon = () => setShowDeleteIcon((prev) => !prev);
   const toggleCards = () => setShowCards((prev) => !prev);
-  const toggleFilter = () => setFilterVisible((prev) => !prev); // Toggle filter visibility
+  const toggleFilter = () => setFilterVisible((prev) => !prev); 
 
   return (
     <>
       <FlexBox width="100%" justify="space-between" padding="1rem 0">
         <FlexBox>
-          <FlexBox columnGap="0.5rem" align="center" onClick={toggleFilter}>
+          <FlexBox  columnGap="0.5rem" align="center" onClick={toggleFilter}>
             <GiSettingsKnobs />
             <Body2>Filters</Body2>
           </FlexBox>

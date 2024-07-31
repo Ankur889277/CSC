@@ -47,6 +47,7 @@ const EditUser = ({ closeModal }) => {
       width="50vw"
       borderRadius="1rem"
     >
+      <FlexBox column  position="relative">
       <Cross onClick={closeModal}>
         <TfiClose />
       </Cross>
@@ -102,6 +103,7 @@ const EditUser = ({ closeModal }) => {
           </SectionContainer>
         </FlexBox>
       </BottomCard>
+      </FlexBox>
     </Modal>
   );
 };

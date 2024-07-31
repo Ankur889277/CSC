@@ -1,12 +1,15 @@
-import React from "react";
+import React,{useState} from "react";
 import FlexBox from "../common/UI/Flexbox";
 import styled from "styled-components";
+import { TfiClose } from "react-icons/tfi";
 import { Body2, H1, Body1 } from "@common/UI/Headings";
 import InputBox from "../common/UI/InputBox";
 import { BsUpload } from "react-icons/bs";
 import TextArea from "@common/UI/TextArea";
 import CustomToggle from "@common/UI/Toggle";
-import Modal from "@common/UI/Modal";
+import { ButtonText } from "../common/UI/Headings";
+import Buttons, { Button } from "../common/UI/Buttons";
+import DiscardModal from "./DiscardModal";
 
 const Wrapper = styled(FlexBox)`
   flex-direction: column;
@@ -49,21 +52,57 @@ const UploadIcon = styled.span`
   font-size: 24px;
 `;
 
-const ButtonContainer = styled.button`
-
-
+const ButtonContainer = styled(FlexBox)`
+justify-content: center;
+padding: 1.5rem 0;
+gap: 3rem;
 `
+
+const ButtonDiscard = styled.button`
+ width: 417px;
+height: 60px;
+gap: 0px;
+border-radius: 0.5rem;
+border: 1px solid  #3DBAF8
+`;
+
+const ButtonSave = styled.button`
+width: 417px;
+height: 60px;
+border-radius: 0.5rem;
+background-color: #3DBAF8;
+border: none;
+`;
+const Cross = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+`;
+
 const Form = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <Wrapper>
-      <FlexBox column rowGap="1.5rem">
+    {isModalOpen && <DiscardModal closeModal={closeModal} />}
+    <Cross onClick={closeModal}>
+        <TfiClose />
+      </Cross>
+      <FlexBox  width="100%" column rowGap="1.5rem">
+        <FlexBox >
+          <FlexBox column width="20rem">
         <img
           width="153px"
           height="153px"
           src="/assets/Profilepicform.svg"
           alt="Profile"
+          
         />
         <H1 bold>Personal Information</H1>
+        </FlexBox>
         <FlexBox width="100%" justify="space-between" columnGap="2.5rem" >
           <FlexBox column width="100%">
             <Body1 color="#000000">First Name*</Body1>
@@ -77,6 +116,7 @@ const Form = () => {
             <Body1 color="#000000">Last Name*</Body1>
             <InputBox placeholder="Last Name">Hello</InputBox>
           </FlexBox>
+        </FlexBox>
         </FlexBox>
         <FlexBox width="100%" justify="space-between" columnGap="2.5rem">
           <FlexBox column width="100%">
@@ -267,9 +307,8 @@ const Form = () => {
         </FlexBox>
       </FlexBox>
       <ButtonContainer>
-        <button>Discard</button>
-        <button>save</button>
-
+        <ButtonDiscard onClick={openModal}>Discard</ButtonDiscard>
+        <ButtonSave >Save</ButtonSave>
       </ButtonContainer>
     </Wrapper>
   );

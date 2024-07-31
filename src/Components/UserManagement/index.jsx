@@ -4,16 +4,15 @@ import SectionContainer from "@common/SectionContainer";
 import EditUser from "./EditUser";
 import styled from "styled-components";
 import Flexbox from "../common/UI/Flexbox";
-import Filter from "./Filter";
 
 const Wrapper = styled(Flexbox)`
   flex-direction: column;
+  width: 100%;
 `;
 const UserManagement = () => {
   return (
     <Wrapper>
       <UserDetails />
-      <Filter/>
     </Wrapper>
   );
 };
