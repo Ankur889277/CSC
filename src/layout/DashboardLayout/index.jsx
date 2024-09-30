@@ -36,8 +36,8 @@ const Content = styled(FlexBox)`
   @media ${device.laptop} {
     max-width: calc(100vw - max(14.75rem, 16.4%));
     ${({ sidebarCollapsed }) =>
-    sidebarCollapsed &&
-    css`
+      sidebarCollapsed &&
+      css`
         max-width: 100vw;
       `}
   }
@@ -48,7 +48,7 @@ const ContentWrapper = styled(FlexBox)`
   overflow: auto;
   margin-bottom: 5rem;
   padding: 1rem;
-  background: #e6ebf0;
+  background: #f9f9f9;
 
   @media ${device.laptop} {
     margin-bottom: 0;

@@ -1,94 +1,127 @@
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { FiX, FiHelpCircle, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Link from "next/link";
 import styled, { css } from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { Body1, Body2, Support, Caption } from "@common/UI/Headings";
-import { ACCENT_0, ACCENT_400, ACCENT_200, ACCENT_300 } from "@common/UI/colors";
+
+import { Body2, Body1 } from "@common/UI/Headings";
+import {
+  ACCENT_0,
+  ACCENT_400,
+  ACCENT_800,
+  PRIMARY_700,
+  PRIMARY_800,
+  ACCENT_200,
+  ACCENT_300,
+} from "@common/UI/colors";
 import { device } from "@common/UI/Responsive";
 import FlexBox from "@common/UI/FlexBox";
-import { SidebarMeta } from "@metadata/sidebar";
-import { logout } from "@redux/slices/auth";
-import ConfirmModal from "@common/UI/ConfirmModal";
+import useIsDesktop from "@hooks/useIsDesktop";
+import { sidebarMeta } from "@metadata/sidebar";
+// import { ShareModal } from "../Components/Share/ShareModal";
 
 const SidebarWrapper = styled.div`
   height: -webkit-fill-available;
   display: grid;
   overflow: hidden;
-  grid-template-columns: 1fr;
+  grid-template-columns: 0fr;
   transition: all 300ms ease-in-out;
   position: fixed;
   z-index: 21;
-  width: ${({ expanded }) => (expanded ? "80%" : "0")};
+  width: 80%;
+  grid-template-columns: 1fr;
   top: 0;
-  bottom: 0;
   overflow-y: auto;
+
+  ${({ expanded }) =>
+    !expanded &&
+    css`
+      width: 0;
+    `}
 
   @media ${device.laptop} {
     width: 16.4%;
     min-width: 14.75rem;
     height: 100vh;
+    grid-template-columns: 1fr;
     position: sticky;
   }
 `;
+
+const commonIconProps = {
+  size: "1.5rem",
+  cursor: "pointer",
+  color: ACCENT_800,
+};
 
 const SidebarContainer = styled(FlexBox)`
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #ffffff;
-  padding: 2rem 0;
+  background-color: ${PRIMARY_800};
 
   @media ${device.laptop} {
     row-gap: 2.5rem;
+    background-color: ${PRIMARY_800};
   }
 `;
 
-const SideBarOptions = styled(Link)`
+const Logo = styled.img`
+  width: 100%;
+  max-width: 7rem;
+`;
+
+const PamprazziLogo = styled(FlexBox)`
+  padding: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  @media ${device.laptop} {
+    padding: 2rem 1.5rem;
+  }
+`;
+
+const SideBarOptions = styled(FlexBox)`
   width: 100%;
   cursor: pointer;
-  padding: 1rem 1rem;
+  padding: 0.5rem 1rem;
   justify-content: space-between;
   align-items: center;
-  display: flex;
   transition: transform 0.2s ease;
-  border-radius: 0rem 2rem 2rem 0rem;
-  text-decoration: none;
 
   svg {
-    color: #726c6c;
+    color: ${ACCENT_300};
   }
 
-  ${Body2} {
-    color: #726c6c;
+  ${Body1} {
+    color: ${ACCENT_300};
   }
 
   ${({ active }) =>
     active &&
     css`
-      background-color: #64c8f9;
+      background-color: ${PRIMARY_700};
 
       svg {
+        color: ${ACCENT_0};
+      }
+
+      ${Body1} {
         color: ${ACCENT_0};
       }
     `}
 
   &:hover {
-    background-color: #64c8f9;
+    background-color: ${PRIMARY_700};
     transform: scale(1.01);
 
     svg {
       color: ${ACCENT_0};
     }
-  }
-`;
 
-const Upcoming = styled(Caption)`
-  font-size: 0.5625rem;
-  position: absolute;
-  top: 2px;
-  left: 8px;
+    ${Body1} {
+      color: ${ACCENT_0};
+    }
+  }
 `;
 
 const SubMenuWrapper = styled(FlexBox)`
@@ -111,6 +144,8 @@ const SubMenuLink = styled(Link)`
     left: 13px;
     width: 0.5rem;
     aspect-ratio: 1;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
     border-radius: 1rem;
     background-color: ${ACCENT_400};
   }
@@ -121,136 +156,103 @@ const SubMenuLink = styled(Link)`
     left: 0;
     width: 1rem;
     height: 1px;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
     border-radius: 1rem;
     background-color: ${ACCENT_400};
   }
 
-  ${Support} {
+  ${Body2} {
     color: ${ACCENT_300};
   }
 
   ${({ active }) =>
     active &&
     css`
-      ${Support} {
+      ${Body2} {
         color: ${ACCENT_200};
         font-weight: 600;
       }
     `}
 `;
 
-const SupportButton = styled(FlexBox)`
-  width: 100%;
-  padding: 10px;
-`;
-
-const SupportLink = styled(FlexBox)`
-  width: 100%;
-  flex-direction: column;
-  background-color: #03a9f4;
-  padding: 17px 18px;
-  border-radius: 1rem;
-  gap: 0.5rem;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  background-color: #fafafa;
-  border: none;
-  color: #089ce6;
-  font-weight: bold;
-`;
-
-export const Sidebar = ({ showSidebar }) => {
+export const Sidebar = ({ showSidebar, toggleSidebar }) => {
   const [activeOptions, setActiveOptions] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const isDesktop = useIsDesktop();
   const pathname = usePathname();
-  const dispatch = useDispatch();
-
-  const storeId = useSelector(state => state.auth.storeId);
-
-  const handleOptionClick = id => {
-    setActiveOptions(prevActiveOptions =>
-      prevActiveOptions.includes(id)
-        ? prevActiveOptions.filter(optionId => optionId !== id)
-        : [...prevActiveOptions, id]
-    );
-  };
-
-  const handleConfirmLogout = () => {
-    dispatch(logout());
-    setIsModalOpen(false);
-  };
-
-  const handleCancelLogout = () => {
-    setIsModalOpen(false);
-  };
-
-  const renderIcon = (id, slug, badge) => {
-    if (badge === "upcoming") {
-      return (
-        <FlexBox position="relative">
-          <img src="/assets/DashboardIcons/upcoming-bg.svg" width="64px" height="auto" />
-          <Upcoming color={ACCENT_0}>UPCOMING</Upcoming>
-        </FlexBox>
-      );
-    }
-
-    return activeOptions.includes(id) || pathSegments[0] === slug ? (
-      <FiChevronUp />
-    ) : (
-      <FiChevronDown />
-    );
-  };
 
   const pathSegments = pathname.split("/").filter(segment => segment !== "");
-  const sidebarMeta = SidebarMeta;
+
+  const handleOptionClick = id => {
+    const set = new Set([...activeOptions]);
+    set.has(id) ? set.delete(id) : set.add(id);
+
+    setActiveOptions([...set]);
+  };
 
   return (
     <SidebarWrapper expanded={showSidebar}>
       <SidebarContainer>
-        <FlexBox column rowGap="1.5rem">
+        <FlexBox column>
+          <PamprazziLogo>
+            <Link href="/">
+              <Logo
+                src="/assets/pamprazzi-logo-white.svg"
+                alt="logo"
+                draggable="false"
+              />
+            </Link>
+            {!isDesktop && <FiX color={ACCENT_0} onClick={toggleSidebar} />}
+          </PamprazziLogo>
           <FlexBox column>
-            {sidebarMeta.map(({ label, image, slug, id, url }) => (
-              <SideBarOptions
-                key={slug}
-                href={url}
-                active={activeOptions.includes(id) || pathSegments[0] === slug}
-              >
-                <FlexBox align="center" columnGap="0.85rem">
-                  <img src={image} alt={label} width="18" height="18" />
-                  <Body2 bold>{label}</Body2>
-                  {label === "Report" && (
-                    <img src="/path/to/favicon.ico" alt="Report favicon" width="18" height="18" />
+            {sidebarMeta?.map(({ url, label, image, slug, subMenu, id }) => (
+              <>
+                <SideBarOptions
+                  key={slug}
+                  onClick={() => {
+                    handleOptionClick(id);
+                  }}
+                  active={
+                    activeOptions?.includes(id) || pathSegments?.[0] === slug
+                  }
+                >
+                  <FlexBox align="center" columnGap="0.85rem">
+                    <img src={image} alt="label" width="18" height="18" />
+                    <Body1 bold>{label}</Body1>
+                  </FlexBox>
+                  {activeOptions?.includes(id) || pathSegments?.[0] === slug ? (
+                    <FiChevronUp />
+                  ) : (
+                    <FiChevronDown />
                   )}
-                </FlexBox>
-                {renderIcon(id, slug)}
-              </SideBarOptions>
+                </SideBarOptions>
+                {subMenu && (
+                  <SubMenuWrapper
+                    column
+                    active={
+                      activeOptions?.includes(id) || pathSegments?.[0] === slug
+                    }
+                  >
+                    {subMenu?.map(({ url, label, slug }) => (
+                      <SubMenuLink
+                        key={slug}
+                        href={url}
+                        active={pathSegments?.[1] === slug}
+                      >
+                        <Body2 color={ACCENT_0}>{label}</Body2>
+                      </SubMenuLink>
+                    ))}
+                  </SubMenuWrapper>
+                )}
+              </>
             ))}
           </FlexBox>
         </FlexBox>
-        <SupportButton>
-          <SupportLink>
-            <img width="40.06px" height="37.14px" src="/assets/supportIcon.png" />
-            <Body1 color="#FAFAFA">Need help?</Body1>
-            <Body2 color="#FAFAFA">Please Contact Us</Body2>
-            <Button>Support</Button>
-          </SupportLink>
-        </SupportButton>
-        {isModalOpen && (
-          <ConfirmModal
-            toggleModal={handleCancelLogout}
-            onCancel={handleCancelLogout}
-            title="Log Out"
-            confirmationText="Are you sure you want to Log Out?"
-            cancelButtonText="No"
-            confirmButtonText="Yes"
-            onConfirm={handleConfirmLogout}
-          />
-        )}
+        <FlexBox padding="2rem 1.5rem" columnGap="0.5rem" align="center">
+          <FiHelpCircle {...commonIconProps} color={ACCENT_0} />
+          {/* <ShareModal /> */}
+        </FlexBox>
       </SidebarContainer>
     </SidebarWrapper>
   );

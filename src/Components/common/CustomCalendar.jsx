@@ -4,7 +4,13 @@ import styled from "styled-components";
 import "react-calendar/dist/Calendar.css";
 import { TbChevronRight, TbChevronLeft } from "react-icons/tb";
 
-import { PRIMARY_900, ACCENT_0, ACCENT_500, BLACK,SECONDARY_900 } from "@common/UI/colors";
+import {
+  PRIMARY_900,
+  ACCENT_0,
+  ACCENT_500,
+  BLACK,
+  SECONDARY_900,
+} from "@common/UI/colors";
 import { device } from "@common/UI/Responsive";
 
 const CalendarStyles = styled.div`
@@ -99,7 +105,7 @@ const CustomCalendar = ({ onDateChange, width, selectedDate, minDate }) => {
 
   const onChange = newDate => {
     setDate(newDate);
-    console.log('newDate',newDate);
+    console.log("newDate", newDate);
     const dateObject = {
       startDate: newDate[0],
       endDate: newDate[newDate.length - 1],

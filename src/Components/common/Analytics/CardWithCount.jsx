@@ -20,7 +20,7 @@ const CardContainer = styled(FlexBox)`
   @media ${device.laptop} {
     padding: 1.5rem;
     flex-direction: row;
-    justify-content: center;
+    justify-content: start;
   }
 `;
 
@@ -29,10 +29,9 @@ const DetailsBox = styled(FlexBox)`
   flex-direction: column;
 
   @media ${device.laptop} {
-    gap: 0;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    align-items: start;
+    justify-content: start;
+    text-align: start;
   }
 `;
 
@@ -45,8 +44,15 @@ const Icon = styled.div`
   }
 `;
 
+const Hr = styled.hr`
+  height: 100%;
+  width: 0.3rem;
+  border-radius: 1rem;
+  border: 3px solid #53ea4f;
+`;
 const CardWithCount = ({ title, count, icon: IconComponent }) => (
   <CardContainer>
+    <Hr />
     <DetailsBox>
       <H1 color="#718EBF">{title}</H1>
       <Body1 bold color="#726C6C">

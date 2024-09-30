@@ -4,7 +4,7 @@ import { ACCENT_800 } from "@common/UI/colors";
 import { device } from "@common/UI/Responsive";
 
 const commonStyles = css`
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   display: ${({ display }) => display || "initial"};
   opacity: ${({ opacity }) => opacity || 1};
   font-weight: ${({ bold }) => (bold ? 700 : 400)};
@@ -40,7 +40,7 @@ export const H1 = styled.h2`
 
 export const H2 = styled.h3`
   ${commonStyles}
-  font-size:1.125rem;
+  font-size:2rem;
   line-height: ${({ lineHeight }) => lineHeight || "1.75rem"};
   letter-spacing: ${({ spacing }) => spacing || "unset"};
 `;

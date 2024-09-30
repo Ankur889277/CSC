@@ -6,7 +6,7 @@ const CustomRatingBarStyle = styled.div`
 `;
 
 const StarImageStyle = styled.img`
-  width: 1.25rem;
+  width: 1.5rem;
   height: 1rem;
   object-fit: cover;
   padding-right: 0.4rem;
@@ -18,9 +18,8 @@ const Rating = ({ rate }) => {
 
   // const starImageFilled =
   //   "https://raw.githubusercontent.com/AboutReact/sampleresource/master/star_filled.png";
-  const starImageFilled = "/assets/Review/StarIcon.svg";
-
-  const starImageCorner = "/assets/Review/blankstar.svg";
+  const starImageCorner = "/assets/DisableStar.icon.svg";
+  const starImageFilled = "/assets/filledStar.icon.svg";
 
   const handleRatingClick = item => {
     setDefaultRating(item);

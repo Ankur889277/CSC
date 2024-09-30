@@ -28,7 +28,7 @@ const InnerWrapper = styled(FlexBox)`
 export const Button = styled.button`
   box-sizing: border-box;
   display: ${({ block }) => (block ? "block" : "inline")};
-  background-color: ${({ color }) => color || PRIMARY_800};
+  background-color: ${({ color }) => color || "#066EA1"};
   padding: ${({ padding }) => padding || "0.5rem 1rem"};
   color: ${ACCENT_100};
   line-height: 1.25rem;
