@@ -3,11 +3,10 @@ import styled from "styled-components";
 import { IoIosArrowForward } from "react-icons/io";
 import { useRouter } from "next/router";
 
-import FlexBox from "../common/UI/Flexbox";
-import { Body1, H1, ButtonText } from "../common/UI/Headings";
-import { Button } from "../common/UI/Buttons";
+import FlexBox from "@common/UI/Flexbox";
+import { Body1, H1, ButtonText } from "@common/UI/Headings";
 import ViewAllTask from "./ViewAllTask";
-import Modal from "../common/UI/Modal"; // Ensure Modal is imported
+import Modal from "@common/UI/Modal";
 
 const Wrapper = styled(FlexBox)`
   flex-direction: column;

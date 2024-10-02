@@ -61,7 +61,6 @@ const AddCustomer = () => {
     openingbalance: "",
     isGatepassneeded: "",
     gatepassvalidtill: "",
-    status: "",
   });
 
   const handleInputChange = (name, value) => {
@@ -160,12 +159,6 @@ const AddCustomer = () => {
             label="Gate Pass Valid Till"
             name="gatepassvalidtill"
             value={formData.gatepassvalidtill}
-            onChange={handleInputChange}
-          />
-          <InputSection
-            label="Status"
-            name="status"
-            value={formData.status}
             onChange={handleInputChange}
           />
         </GridContainer>

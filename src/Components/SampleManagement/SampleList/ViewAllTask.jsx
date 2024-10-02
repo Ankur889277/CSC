@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import FlexBox from "../common/UI/Flexbox";
-import { Body1, Support } from "../common/UI/Headings";
+import FlexBox from "@common/UI/Flexbox";
+import { Body1, Support } from "@common/UI/Headings";
 import { TfiClose } from "react-icons/tfi";
 
 const TaskIDWrapper = styled(FlexBox)`

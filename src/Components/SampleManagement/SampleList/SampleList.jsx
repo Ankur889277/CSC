@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { FaSort } from "react-icons/fa";
 import { GiSettingsKnobs } from "react-icons/gi";
 
-import FlexBox from "../common/UI/Flexbox";
-import { H1, Body1, Body2 } from "../common/UI/Headings";
+import FlexBox from "../../common/UI/Flexbox";
+import { H1, Body1, Body2 } from "../../common/UI/Headings";
 
 const Wrapper = styled(FlexBox)`
   width: 100%;
