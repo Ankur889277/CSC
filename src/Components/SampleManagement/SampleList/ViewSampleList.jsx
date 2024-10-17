@@ -91,9 +91,6 @@ const ContainerButton = styled.button`
 const ViewSampleList = () => {
   const router = useRouter();
 
-  const handleCompletedClick = () => {
-    console.log("completed clicked");
-  };
   const tasks = [
     {
       id: "TRF:2431D68F",
@@ -133,12 +130,6 @@ const ViewSampleList = () => {
           </Modal>
         )}
         <H1 bold>Sample List</H1>
-        <FlexBox width="100%" backgroundColor="#ffffff" borderRadius="1rem">
-          <ContainerButton>Outgoing</ContainerButton>
-          <ContainerButton onClick={handleCompletedClick}>
-            Completed
-          </ContainerButton>
-        </FlexBox>
         <GridContainer>
           {tasks.map((task, index) => (
             <Card key={index}>

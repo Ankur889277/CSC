@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { ACCENT_0, ACCENT_800 } from "./colors";
+import { ACCENT_0, ACCENT_800, RED_100, GOLDEN } from "./colors";
 import { Body1 } from "./Headings";
 
 const Tablist = styled.ul`
@@ -8,16 +8,15 @@ const Tablist = styled.ul`
   justify-content: ${props => props.tabJustify || "space-around"};
   margin: auto;
   align-items: center;
-  height: 4rem;
   display: flex;
   list-style: none;
-  column-gap: 2rem;
   cursor: pointer;
-  padding: 0;
+  padding: 1rem;
+  border-radius: 0.5rem;
 `;
 
 const List = styled.li`
-  background-color: ${props => (props.active ? ACCENT_800 : "inherit")};
+  background-color: white;
   /* width: ${props => props.tabWidth || "10rem"}; */
   display: flex;
   align-items: center;
@@ -26,6 +25,8 @@ const List = styled.li`
   flex: 1;
   border-radius: 0.25rem;
   transition: background-color 0.3s ease;
+  padding: 1rem;
+  border-radius: 0.5rem;
 `;
 
 const TabContent = styled.div`
@@ -48,7 +49,7 @@ const Tabs = ({ children }) => {
             active={activeTab === index}
             onClick={() => handleTabClick(index)}
           >
-            <Body1 bold color={activeTab === index ? ACCENT_0 : ACCENT_800}>
+            <Body1 bold color={activeTab === index ? GOLDEN : RED_100}>
               {child.props.title}
             </Body1>
           </List>

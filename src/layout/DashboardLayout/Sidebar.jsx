@@ -62,7 +62,7 @@ const SidebarContainer = styled(FlexBox)`
 
   @media ${device.laptop} {
     row-gap: 2.5rem;
-    background-color: ${PRIMARY_800};
+    background-color: #ffffff;
   }
 `;
 
@@ -83,7 +83,7 @@ const PamprazziLogo = styled(FlexBox)`
 const SideBarOptions = styled(FlexBox)`
   width: 100%;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   justify-content: space-between;
   align-items: center;
   transition: transform 0.2s ease;
@@ -141,7 +141,7 @@ const SubMenuLink = styled(Link)`
     content: "";
     position: absolute;
     bottom: 0.75rem;
-    left: 13px;
+    left: -4px;
     width: 0.5rem;
     aspect-ratio: 1;
     -moz-border-radius: 1rem;
@@ -154,8 +154,7 @@ const SubMenuLink = styled(Link)`
     position: absolute;
     bottom: 1rem;
     left: 0;
-    width: 1rem;
-    height: 1px;
+
     -moz-border-radius: 1rem;
     -webkit-border-radius: 1rem;
     border-radius: 1rem;
@@ -196,13 +195,7 @@ export const Sidebar = ({ showSidebar, toggleSidebar }) => {
       <SidebarContainer>
         <FlexBox column>
           <PamprazziLogo>
-            <Link href="/">
-              <Logo
-                src="/assets/pamprazzi-logo-white.svg"
-                alt="logo"
-                draggable="false"
-              />
-            </Link>
+            <Link href="/"></Link>
             {!isDesktop && <FiX color={ACCENT_0} onClick={toggleSidebar} />}
           </PamprazziLogo>
           <FlexBox column>
@@ -217,7 +210,7 @@ export const Sidebar = ({ showSidebar, toggleSidebar }) => {
                     activeOptions?.includes(id) || pathSegments?.[0] === slug
                   }
                 >
-                  <FlexBox align="center" columnGap="0.85rem">
+                  <FlexBox align="center" columnGap="0.50rem">
                     <img src={image} alt="label" width="18" height="18" />
                     <Body1 bold>{label}</Body1>
                   </FlexBox>
